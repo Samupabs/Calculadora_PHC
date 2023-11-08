@@ -239,7 +239,11 @@ public class Calculadora {
         }
         return numero;
     }
-
+    /**
+     * Este método recibe el texto y borra el último elemento.
+     * @param textoActual
+     * @return "55.9+28 = 55.9+2"
+     */
     public String borrarUnChar (String textoActual) {
         String nuevoTexto="";
 

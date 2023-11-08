@@ -77,7 +77,7 @@ public class HelloController {
     @FXML
     protected void botonBorrar() {
         String textoActual = panelCalculadora.getText();
-            panelCalculadora.setText(calculadora.borrarUnChar(textoActual));
+        panelCalculadora.setText(calculadora.borrarUnChar(textoActual));
 
     }
 }
