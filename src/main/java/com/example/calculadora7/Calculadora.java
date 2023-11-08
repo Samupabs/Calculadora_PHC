@@ -86,15 +86,30 @@ public class Calculadora {
         textoActual = textoActual.trim();
         String primerNumero = "";  // Inicializamos la variable en blanco
 
-        for (int i = 0; i < textoActual.length(); i++) {
-            char caracter = textoActual.charAt(i);
-            if (caracter == '+' || caracter == '-' || caracter == '*' || caracter == '/') {
-                // Cuando encuentra un operador, detén el bucle
-                break;
+        if(textoActual.startsWith("-")) {
+            for (int i = 1; i < textoActual.length(); i++) {
+                char caracter = textoActual.charAt(i);
+                if (caracter == '+' || caracter == '-' || caracter == '*' || caracter == '/') {
+                    // Cuando encuentra un operador, detén el bucle
+                    break;
+                }
+                primerNumero += caracter;  // Agrega el carácter al final de la cadena
             }
-            primerNumero += caracter;  // Agrega el carácter al final de la cadena
+            primerNumero = "-"+primerNumero;
+        } else {
+            for (int i = 0; i < textoActual.length(); i++) {
+                char caracter = textoActual.charAt(i);
+                if (caracter == '+' || caracter == '-' || caracter == '*' || caracter == '/') {
+                    // Cuando encuentra un operador, detén el bucle
+                    break;
+                }
+                primerNumero += caracter;  // Agrega el carácter al final de la cadena
+            }
         }
-        this.primerNumero = primerNumero;
+        System.out.println("1erNro: "+this.primerNumero);
+
+            this.primerNumero = primerNumero;
+
 
         return primerNumero;
     }
@@ -107,17 +122,23 @@ public class Calculadora {
 
         char ultimoOperador = ' ';
         String respuesta;
+        String primerNumeroCom = obtenerPrimerNumero(textoActual);
 
-        // Recorre el texto para encontrar el último operador
-        for (int i = textoActual.length() - 1; i >= 0; i--) {
-            char caracter = textoActual.charAt(i);
-            if (caracter == '+' || caracter == '-' || caracter == '*' || caracter == '/') {
-                ultimoOperador = caracter;
-                break;
+        if (primerNumeroCom == null || primerNumeroCom.isEmpty() || primerNumeroCom.isBlank() ) {
+        //
+        } else {
+            // Recorre el texto para encontrar el último operador
+            for (int i = textoActual.length() - 1; i >= 1; i--) {
+                char caracter = textoActual.charAt(i);
+                if (caracter == '+' || caracter == '-' || caracter == '*' || caracter == '/') {
+                    ultimoOperador = caracter;
+                    break;
+                }
             }
         }
 
         respuesta = String.valueOf(ultimoOperador);
+        System.out.println("Calculo: "+this.tipoDeCalculo);
         this.tipoDeCalculo = respuesta;
 
         return respuesta;
@@ -146,6 +167,8 @@ public class Calculadora {
                 }
                 segundoNumeroModificado = caracter + segundoNumeroModificado;  // Agrega el carácter al inicio de la cadena
             }
+            System.out.println("2doNro: "+this.segundoNumero);
+
             this.segundoNumero = segundoNumeroModificado;
         }
 
@@ -165,12 +188,10 @@ public class Calculadora {
 
         primerNumero = comprobarComilla(primerNumero);
 
-        if (existeOperador == null && existeOperador.isEmpty() || existeOperador.isBlank()){ //Solo cambia el operador si no hay uno
-            /*if (textoActual.isBlank() && operador.equals("-")) {
+        if (existeOperador == null || existeOperador.isEmpty() || existeOperador.isBlank()){ //Solo cambia el operador si no hay uno
+            if (textoActual.isBlank() || operador.equals("-")) {
                 respuesta = operador;
-            } else*/ //Esto debía comprobar si querías introducir un número negativo, pero no me da tiempo a implementarlo porque
-            // habría que cambiar mucho código en obtenerPrimerNumero(), obtenerOperandos() y obtenerSegundoNumero()
-            if (textoActual.isEmpty()) { // Evita escribir los operandos sin numeros previos
+            } else if (textoActual.isEmpty()) { // Evita escribir los operandos sin numeros previos
                 respuesta = "";
             }  else if (segundoNumero != null || !segundoNumero.isBlank() || !segundoNumero.isEmpty()) {
                 respuesta = primerNumero + operador + segundoNumero;
