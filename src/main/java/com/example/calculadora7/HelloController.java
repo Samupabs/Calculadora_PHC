@@ -77,20 +77,7 @@ public class HelloController {
     @FXML
     protected void botonBorrar() {
         String textoActual = panelCalculadora.getText();
+            panelCalculadora.setText(calculadora.borrarUnChar(textoActual));
 
-        if (textoActual.length() > 0) {
-            char[] caracteres = textoActual.toCharArray();
-            char[] nuevosCaracteres = new char[caracteres.length - 1];
-
-            for (int i = 0, j = 0; i < caracteres.length - 1; i++) {
-                if (caracteres[i] != ' ') {
-                    nuevosCaracteres[j] = caracteres[i];
-                    j++;
-                }
-            }
-
-            String nuevoTexto = new String(nuevosCaracteres);
-            panelCalculadora.setText(nuevoTexto);
-        }
     }
 }
