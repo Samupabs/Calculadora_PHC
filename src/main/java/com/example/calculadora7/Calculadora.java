@@ -86,7 +86,7 @@ public class Calculadora {
         textoActual = textoActual.trim();
         String primerNumero = "";  // Inicializamos la variable en blanco
 
-        if(textoActual.startsWith("-")) {
+        /*if(textoActual.startsWith("-")) {
             for (int i = 1; i < textoActual.length(); i++) {
                 char caracter = textoActual.charAt(i);
                 if (caracter == '+' || caracter == '-' || caracter == '*' || caracter == '/') {
@@ -96,7 +96,7 @@ public class Calculadora {
                 primerNumero += caracter;  // Agrega el carácter al final de la cadena
             }
             primerNumero = "-"+primerNumero;
-        } else {
+        } else {*/
             for (int i = 0; i < textoActual.length(); i++) {
                 char caracter = textoActual.charAt(i);
                 if (caracter == '+' || caracter == '-' || caracter == '*' || caracter == '/') {
@@ -105,7 +105,7 @@ public class Calculadora {
                 }
                 primerNumero += caracter;  // Agrega el carácter al final de la cadena
             }
-        }
+
         System.out.println("1erNro: "+this.primerNumero);
 
             this.primerNumero = primerNumero;
@@ -122,20 +122,20 @@ public class Calculadora {
 
         char ultimoOperador = ' ';
         String respuesta;
-        String primerNumeroCom = obtenerPrimerNumero(textoActual);
+        /*String primerNumeroCom = obtenerPrimerNumero(textoActual);
 
         if (primerNumeroCom == null || primerNumeroCom.isEmpty() || primerNumeroCom.isBlank() ) {
         //
-        } else {
+        } else {*/
             // Recorre el texto para encontrar el último operador
-            for (int i = textoActual.length() - 1; i >= 1; i--) {
+            for (int i = textoActual.length() - 1; i >= 0; i--) {
                 char caracter = textoActual.charAt(i);
                 if (caracter == '+' || caracter == '-' || caracter == '*' || caracter == '/') {
                     ultimoOperador = caracter;
                     break;
                 }
             }
-        }
+
 
         respuesta = String.valueOf(ultimoOperador);
         System.out.println("Calculo: "+this.tipoDeCalculo);
@@ -189,9 +189,9 @@ public class Calculadora {
         primerNumero = comprobarComilla(primerNumero);
 
         if (existeOperador == null || existeOperador.isEmpty() || existeOperador.isBlank()){ //Solo cambia el operador si no hay uno
-            if (textoActual.isBlank() || operador.equals("-")) {
+            /*if (textoActual.isBlank() || operador.equals("-")) {
                 respuesta = operador;
-            } else if (textoActual.isEmpty()) { // Evita escribir los operandos sin numeros previos
+            } else*/ if (textoActual.isEmpty()) { // Evita escribir los operandos sin numeros previos
                 respuesta = "";
             }  else if (segundoNumero != null || !segundoNumero.isBlank() || !segundoNumero.isEmpty()) {
                 respuesta = primerNumero + operador + segundoNumero;
