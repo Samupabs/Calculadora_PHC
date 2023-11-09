@@ -10,3 +10,6 @@ por defecto en 0 para evitar problemas de escribir una cadena de caracteres que 
 
 -No pueden introducirse números negativos: Si se introduce unos parámetros cuyo resultado acabe en número negativo se "bloquea",
 puesto que los botones de operandos dejan de ser funcionales por cómo está programado.
+
+Hay parte de algunos métodos en los que hay entre comentarios código intentando solucionar este problema. No me da tiempo a solucionarlo
+antes de la entrega del proyecto, pero me gustaría intentarlo por mi cuenta más adelante y por ello están en el código.
